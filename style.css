@@ -1,0 +1,136 @@
+/* Core Styling & Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f5f0; /* Warm cream background */
+  color: #3e3a35; /* Soft charcoal text */
+  padding: 2rem 1rem;
+}
+
+/* Header Styles */
+.album-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.album-header h1 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.album-header p {
+  font-size: 1.1rem;
+  color: #7a7265;
+  font-style: italic;
+}
+
+.header-divider {
+  width: 60px;
+  height: 2px;
+  background-color: #c4b69c;
+  margin: 1.5rem auto 0 auto;
+}
+
+/* Collage Grid Layout */
+.collage-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: 280px;
+  grid-gap: 20px;
+}
+
+/* Layout modifiers for varied photo sizes */
+.collage-item.large-vertical {
+  grid-row: span 2;
+}
+
+.collage-item.wide-horizontal {
+  grid-column: span 2;
+}
+
+/* Individual Photo Card Styling */
+.collage-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  background-color: #fff;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Keeps aspect ratios clean without squishing images */
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+/* Elegant Text Overlay */
+.photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: #fff;
+  padding: 1.5rem 1rem 1rem 1rem;
+  font-size: 0.95rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Desktop Hover Interaction */
+@media (hover: hover) {
+  .collage-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(122, 114, 101, 0.2);
+  }
+
+  .collage-item:hover img {
+    transform: scale(1.03);
+  }
+
+  .collage-item:hover .photo-caption {
+    opacity: 1;
+  }
+}
+
+/* Mobile Fallback - show captions directly on small screens */
+@media (max-width: 768px) {
+  .collage-item.wide-horizontal {
+    grid-column: span 1; /* Drop column span on mobile to prevent overcrowding */
+  }
+  .photo-caption {
+    opacity: 1;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  }
+}
+
+/* Footer Styles */
+.album-footer {
+  text-align: center;
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e6dfd3;
+  font-size: 0.9rem;
+  color: #9a9080;
+}
+
+.private-tag {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
